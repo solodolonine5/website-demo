@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arkham Recovery Solutions | Surplus Funds Recovery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #f0a500;
+        }
+
+        .nav-phone {
+            font-size: 1.2rem;
+            color: #f0a500;
+            font-weight: 600;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><path d="M0 50 Q 25 25, 50 50 T 100 50" stroke="rgba(240,165,0,0.1)" fill="none" stroke-width="2"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .highlight {
+            color: #f0a500;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #f0a500;
+            color: #1a1a2e;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(240, 165, 0, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(240, 165, 0, 0.6);
+        }
+
+        .stats-bar {
+            background: #f0a500;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #1a1a2e;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #f0a500;
+        }
+
+        .what-we-do {
+            background: #f8f9fa;
+            padding: 4rem 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin: 2rem auto;
+            max-width: 900px;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f0a500, #ff9a00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #1a1a2e;
+            color: #f0a500;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .mission {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .mission-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .mission h2 {
+            color: #f0a500;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .mission p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-box {
+            background: #fff3cd;
+            border-left: 5px solid #f0a500;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 900px;
+            border-radius: 5px;
+        }
+
+        .alert-box h3 {
+            color: #856404;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            margin: 2rem 0;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .stats-bar {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">⚡ Arkham Recovery Solutions</div>
+            <div class="nav-phone">📞 1-866-ARKHAM-1</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Recover the Money <span class="highlight">You're Owed</span> After Foreclosure or Tax Sale</h1>
+            <p>Arkham Recovery Solutions helps you claim surplus funds legally, quickly, and stress-free.</p>
+            <a href="#contact" class="cta-button">Get Your Free Evaluation</a>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stat">
+            <span class="stat-number">$6,200</span>
+            <span class="stat-label">Average Recovery Per Client</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Success Rate</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number">$0</span>
+            <span class="stat-label">Upfront Fees</span>
+        </div>
+    </div>
+
+    <section class="what-we-do">
+        <div class="container">
+            <h2 class="section-title">What We Do</h2>
+            <div class="service-card">
+                <div class="service-icon">⚖️</div>
+                <h3 style="text-align: center; font-size: 2rem; color: #1a1a2e; margin-bottom: 1.5rem;">Surplus Recovery Services</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8;">If your home or property was taken due to foreclosure or a tax auction, you may still be owed thousands in leftover proceeds — known as surplus funds.</p>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">We handle the entire claim process on your behalf, with no upfront fees and full legal support.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">💼</div>
+                        <h4>No Upfront Fees</h4>
+                        <p>You only pay when we successfully recover your funds</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📝</div>
+                        <h4>Full Legal Support</h4>
+                        <p>We handle all paperwork and legal requirements</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🔐</div>
+                        <h4>Secure & Confidential</h4>
+                        <p>Your information is protected throughout the process</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Our Proven 6-Step Recovery Process</h2>
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Identification</h3>
+                <p>We identify surplus funds you're entitled to receive</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Verification</h3>
+                <p>We verify your eligibility and claim rights</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Documentation</h3>
+                <p>We prepare all required legal documentation</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Filing</h3>
+                <p>We file your claim with the appropriate agency</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h3>Follow-Up</h3>
+                <p>We monitor your claim and handle all communications</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">6</div>
+                <h3>Recovery</h3>
+                <p>You receive your funds securely and efficiently</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="alert-box">
+        <h3>⏰ Time-Sensitive: Act Now!</h3>
+        <p style="font-size: 1.1rem; line-height: 1.8;">These funds are held for only a brief period of time, after which the agency responsible for them may be permitted to seize them through a process called "escheatment." The clock is ticking on your rightfully owed money!</p>
+    </div>
+
+    <section class="mission">
+        <div class="mission-content">
+            <h2>🎯 Arkham Recovery Solutions Mission</h2>
+            <p>Our mission is to help individuals, families, and businesses reclaim what's rightfully theirs — from forgotten assets and surplus funds to unclaimed financial opportunities — with transparency, integrity, and zero upfront risk.</p>
+            <p>We specialize in the recovery of funds tied to mortgage foreclosures, tax sales, and government-held assets. With unmatched expertise in navigating public systems across all 50 states, we advocate for our clients by removing red tape, challenging improper claims, and ensuring the highest possible return.</p>
+            <p style="font-size: 1.4rem; font-weight: bold; color: #f0a500; margin-top: 2rem;">At Arkham Recovery Solutions, we don't just find lost money — we restore legacies, protect generational wealth, and deliver results that matter.</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Understanding Surplus Funds</h2>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">Surplus funds (also called "overage" or "excess funds") are created when a property is sold at foreclosure or tax auction for more than the amount owed. These excess proceeds legally belong to the former property owner or their heirs.</p>
+            
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">The funds we contact you about are held in county court registries following association foreclosures, mortgage foreclosures, or tax-deed foreclosure sales. Many homeowners are unaware they may be entitled to these funds.</p>
+            
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">While it's possible to file a claim yourself, Arkham Recovery Solutions's experience and expertise ensures the best result in dealing with the challenges of the process: various document requirements, competing and fraudulent claims, statutory time limits, and other administrative issues.</p>
+            
+            <p style="font-size: 1.2rem; font-weight: bold; color: #1a1a2e; text-align: center; margin-top: 2rem;">"Most of our clients had no idea they were owed money… until we called."</p>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <h2 style="color: #f0a500; margin-bottom: 2rem;">Get in Touch</h2>
+            <div class="contact-info">
+                <p>📍 Serving all 50 states nationwide</p>
+                <p>📞 1-866-ARKHAM-1 (1-866-275-4261)</p>
+                <p>✉️ info@arkhamrecoverysolutions.com</p>
+                <p style="margin-top: 2rem;">⚡ Licensed Surplus Funds Finders</p>
+            </div>
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p>&copy; 2025 Arkham Recovery Solutions. All rights reserved.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">Helping families reclaim what's rightfully theirs.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.process-step, .service-card, .feature').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
